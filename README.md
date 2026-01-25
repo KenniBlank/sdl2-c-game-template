@@ -8,6 +8,21 @@ Designed to be simple, hackable, and easy to extend for small-to-medium game pro
 
 # Wiki
 
+## Project Structure
+
+```text
+./
+├── assets/            # Game assets (images, audio, etc.)
+├── src/
+│   ├── config.h       # Build-time configuration
+│   ├── game.c         # All game logic
+│   ├── game.h         # Game interface
+│   └── main.c         # Entry point and main loop
+├── LICENSE
+├── Makefile
+└── README.md
+```
+
 ## Architecture Overview
 
 The project is structured around a simple and explicit game lifecycle.
@@ -96,3 +111,76 @@ Notes
 - DEBUG enables debug-specific behavior without touching main.c.
 
 > Future improvements may move these values to a runtime config file.
+
+# Build System (Makefile)
+
+This Makefile provides a minimal build system for a C project using SDL2. It's designed to be simple and easy to understand.
+
+## Build Targets
+
+### `all` (Default Target)
+- Creates the `build/` directory if it doesn't exist
+- Compiles the source files into an executable named `game` in the `build/` directory
+- **Usage**: `make` or `make all`
+
+### `clean`
+- Removes the entire `build/` directory and its contents
+- **Usage**: `make clean`
+
+## Dependencies
+- **Compiler**: GCC
+- **Libraries**: SDL2 (Simple DirectMedia Layer 2)
+- Optional (commented out):
+- SDL2_image
+- SDL2_ttf
+
+## Compilation Flags
+- `-Wall`: Enable all standard warnings
+- `-std=c11`: Use C11 standard
+- SDL2-specific flags from `sdl2-config`
+- **Optional**: `-Wextra` (extra warnings - currently commented out)
+
+## Usage Examples
+
+1. **Build the project**:
+```bash
+make
+```
+
+2. **Clean build artifacts**:
+```bash
+make clean
+```
+
+3. **Rebuild from scratch**:
+```bash
+make clean && make
+```
+
+## Customizing the Makefile
+Customization Tips
+
+1. Add more source files: Add to the SRC variable:
+```makefile
+SRC = src/main.c src/game.c src/another.c
+```
+
+2. Enable optional libraries: Uncomment the relevant lines for:
+- SDL2_image (image loading)
+- SDL2_ttf (TrueType font rendering)
+
+3. Change output name: Modify the `OUT` variable:
+```makefile
+OUT = build/my_game
+```
+
+4. Add optimization flags:
+```makefile
+CFLAGS += -O2
+```
+
+# Final Note
+
+- Insure SDL development libraries are installed
+- All source code in `src/` folder
+- All assets like images, videos, fonts, etc in `assets/` folder
