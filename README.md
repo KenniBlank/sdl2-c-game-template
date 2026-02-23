@@ -6,6 +6,9 @@ Provides a clean project structure, basic game loop, and asset handling setup—
 
 Designed to be simple, hackable, and easy to extend for small-to-medium game projects.
 
+## Example Game
+- Sand-Tetris: https://github.com/KenniBlank/Sand-Tetris
+
 # Wiki
 
 ## Project Structure
